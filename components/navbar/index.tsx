@@ -5,7 +5,7 @@ import { Button } from 'antd'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Login from 'components/login'
-export default function index({}) {
+export default function NavBar() {
   const { pathname, push } = useRouter()
   const handleGotoEditorPage = () => {}
   const handleLogin = () => {
