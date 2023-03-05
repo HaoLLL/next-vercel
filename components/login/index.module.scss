@@ -1,0 +1,86 @@
+.loginArea {
+  position: fixed;
+  z-index: 1000;
+  // 1vw = 1/100视口宽度
+  // % 是相对于父元素的大小设定的比率。
+  // vw (viewport width) vh (viewport height) 是视窗的大小，100vw = 100%视窗宽度 100vh = 100%视窗高度，用vw，vh设定的大小只和视窗大小有关，和他们的父元素高度宽度没关系，所以用来开发多种屏幕设备的应用用这个单位还是挺合适的，
+
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  .loginBox {
+    width: 320px;
+    height: 320px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    input {
+      // border 和padding 在width的计算之内
+      box-sizing: border-box;
+      width: 100%;
+      height: 37px;
+      margin-bottom: 10px;
+      padding: 0 10px;
+      border-radius: 5px;
+      border: 1px solid #888;
+      outline: none;
+    }
+    // 输入框获取焦点高亮
+    input:focus {
+      border: 1px solid #1f80ff;
+    }
+    .verifyCodeArea {
+      position: relative;
+      //   文字内容 变成pointer
+      cursor: pointer;
+      .verifyCode {
+        color: #1f80ff;
+        position: absolute;
+        right: 20px;
+        top: 8px;
+        font-size: 14px;
+      }
+    }
+  }
+  .loginTitle {
+    font-size: 20px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    .close {
+      color: #888;
+      cursor: pointer;
+    }
+  }
+
+  .loginBtn {
+    height: 40px;
+    line-height: 40px;
+    background-color: #007fff;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+  .otherLogin {
+    font-size: 14px;
+    color: #007fff;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+  .loginPrivacy {
+    margin-top: 5px;
+    color: #333;
+    a {
+      color: #1e80ff;
+    }
+  }
+}
