@@ -24,7 +24,22 @@ export default function login(props: IProps) {
       [name]: value,
     })
   }
-  const handleLogin = () => {}
+  const handleLogin = () => {
+    request
+      .post('/api/user/login', {
+        ...form,
+      }).then((res:any)=>{
+        if(res?.code === 0){
+          console.log('successss')
+          onClose && onClose();
+
+
+        }else{
+          message.error(res?.msg || '未知错误')
+        }
+
+      })
+  }
   const handleAuthGithub = () => {}
   const handleGetVerifyCode = () => {
     // setIsShowVerifyShow(true)
@@ -46,7 +61,7 @@ export default function login(props: IProps) {
       })
   }
   const handleCountEnd = () => {
-    alert('end')
+    setIsShowVerifyShow(false)
   }
   return isShow ? (
     <div className={styles.loginArea}>
@@ -70,6 +85,7 @@ export default function login(props: IProps) {
             name="verify"
             placeholder="请输入验证码"
             value={form.verify}
+            onChange={handleFormChange}
           />
           <span className={styles.verifyCode} onClick={handleGetVerifyCode}>
             {isShowVerifyCode ? (

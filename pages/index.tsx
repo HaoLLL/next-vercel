@@ -20,6 +20,15 @@
     github第三方登录
 
     短信平台：容联云通信
+    服务端验证验证码：服务端保存内存中 redis
+    iron-session: next中保存一些信息的库 其他的api路由可以共用 32位随机密码生成器
+    自动给客户端发送cookie_name 每次带着cookie 解析字符串 检查是不是登录
+    .env.development 环境变量注入 
+
+    remotemysql tomas
+
+    npm install typeorm mysql2
+    npm install reflect-metadata --save
  *
  * @returns
  */
