@@ -29,6 +29,13 @@
 
     npm install typeorm mysql2
     npm install reflect-metadata --save
+
+
+    typeorm 中使用装饰器
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+    babel转换es5
+    npm install @babel/core @babel/plugin-proposal-decorators @babel/plugin-proposal-class-properties babel-plugin-transform-typescript-metadata -D
  *
  * @returns
  */

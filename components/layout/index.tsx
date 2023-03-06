@@ -1,7 +1,5 @@
 import NavBar from 'components/navbar'
 import Footer from 'components/footer'
-import type { NextPage } from 'next'
-import { AppProps } from 'next/app'
 // const index: NextPage = ({ children }) => {
 //   return <div>sdf</div>
 // }

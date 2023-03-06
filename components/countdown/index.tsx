@@ -4,7 +4,7 @@ interface IProps {
 }
 import { useEffect, useState } from 'react'
 import styles from './index.module.scss'
-export default function countDown(props: IProps) {
+export default function CountDown(props: IProps) {
   const { time, onEnd } = props
   const [count, setCount] = useState(time || 60)
   //   [] 执行一次 空：每次渲染都执行

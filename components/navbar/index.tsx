@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Login from 'components/login'
 export default function NavBar() {
-  const { pathname, push } = useRouter()
+  const { pathname } = useRouter()
   const handleGotoEditorPage = () => {}
   const handleLogin = () => {
     setShowLogin(true)

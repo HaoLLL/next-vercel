@@ -7,7 +7,7 @@ import styles from './index.module.scss'
 import CountDown from 'components/countdown'
 import { message } from 'antd'
 import request from 'service/fetch'
-export default function login(props: IProps) {
+export default function Login(props: IProps) {
   const { isShow = false, onClose } = props
   const handleClose = () => {
     onClose && onClose()
@@ -18,7 +18,7 @@ export default function login(props: IProps) {
   })
   const [isShowVerifyCode, setIsShowVerifyShow] = useState(false)
   const handleFormChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e?.target
+    const { name, value } = e?.target || null
     setForm({
       ...form,
       [name]: value,
@@ -28,16 +28,14 @@ export default function login(props: IProps) {
     request
       .post('/api/user/login', {
         ...form,
-      }).then((res:any)=>{
-        if(res?.code === 0){
+      })
+      .then((res: any) => {
+        if (res?.code === 0) {
           console.log('successss')
-          onClose && onClose();
-
-
-        }else{
+          onClose && onClose()
+        } else {
           message.error(res?.msg || '未知错误')
         }
-
       })
   }
   const handleAuthGithub = () => {}
@@ -103,7 +101,11 @@ export default function login(props: IProps) {
         </div>
         <div className={styles.loginPrivacy}>
           注册登录即表示同意
-          <a href="https://moco.imooc.com/privacy.html" target="_blank">
+          <a
+            href="https://moco.imooc.com/privacy.html"
+            target="_blank"
+            rel="noreferrer"
+          >
             隐私政策
           </a>
         </div>
