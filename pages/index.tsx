@@ -36,6 +36,12 @@
     "emitDecoratorMetadata": true
     babel转换es5
     npm install @babel/core @babel/plugin-proposal-decorators @babel/plugin-proposal-class-properties babel-plugin-transform-typescript-metadata -D
+
+    刷新以后 状态丢失 登录成功 cookie保存后 同步到store中
+    next-cookie 保存avatar userId
+    App.getInitialProps 获取cookie中的内容 给store
+
+    登录成功：存cookie 改store
  *
  * @returns
  */

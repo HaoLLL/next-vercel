@@ -14,10 +14,22 @@ export const AppDataSource = new DataSource({
   database: process.env.DATABASE_DATABASE,
   entities: [User, UserAuth],
 })
-AppDataSource.initialize()
-  .then(() => {
-    console.log('Data Source has been initialized!')
-  })
-  .catch((err) => {
-    console.error('Error during Data Source initialization', err)
-  })
+// const db = await AppDataSource.initialize() 
+// export const prepareConnection = AppDataSource.isInitialized ? 
+//             Promise.resolve(()=>{AppDataSource}): 
+//             AppDataSource.initialize;
+// export const prepareConnection =AppDataSource.isInitialized?()=>Promise.resolve(AppDataSource): AppDataSource.initialize
+// AppDataSource.initialize()
+//   .then(() => {
+//     console.log('Data Source has been initialized!')
+//   })
+//   .catch((err) => {
+//     console.error('Error during Data Source initialization', err)
+//   })
+// AppDataSource.initialize()
+//     .then(() => {
+//         console.log("Data Source has been initialized!")
+//     })
+//     .catch((err) => {
+//         console.error("Error during Data Source initialization", err)
+//     })

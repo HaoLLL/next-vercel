@@ -7,6 +7,7 @@ import styles from './index.module.scss'
 import CountDown from 'components/countdown'
 import { message } from 'antd'
 import request from 'service/fetch'
+import {useStore} from 'store'
 export default function Login(props: IProps) {
   const { isShow = false, onClose } = props
   const handleClose = () => {
@@ -24,20 +25,23 @@ export default function Login(props: IProps) {
       [name]: value,
     })
   }
-  const handleLogin = () => {
-    request
-      .post('/api/user/login', {
-        ...form,
-      })
-      .then((res: any) => {
-        if (res?.code === 0) {
-          console.log('successss')
-          onClose && onClose()
-        } else {
-          message.error(res?.msg || '未知错误')
-        }
-      })
+  const initUserInfo = useStore((state:any) => state.initUserInfo);
+  const handleLogin  = async()=>{
+    const res:any = await request
+    .post('/api/user/login', {
+      ...form,
+      identity_type:'phone'
+    });
+    if (res?.code === 0) {
+      message.info(res?.msg || '操作成功')
+      initUserInfo({userInfo:{...res?.data}});
+      onClose && onClose()
+    } else {
+      message.error(res?.msg || '未知错误')
+    }
+
   }
+  
   const handleAuthGithub = () => {}
   const handleGetVerifyCode = () => {
     // setIsShowVerifyShow(true)
