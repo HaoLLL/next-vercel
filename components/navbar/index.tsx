@@ -28,8 +28,8 @@ export default function NavBar() {
   useStore.subscribe((state: any) => {
     console.log('susbscibe')
     console.log(state)
-    // setAvatar(state.user?.userInfo?.avatar)
-    // setUserId(state.user?.userInfo?.userId)
+    setAvatar(state.user?.userInfo?.avatar)
+    setUserId(state.user?.userInfo?.userId)
   })
   console.log('update')
 

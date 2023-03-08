@@ -1,0 +1,49 @@
+// <div className="content-layout">
+//                 <h2 className={styles.title}>{article.title}</h2>
+//                 <div className={styles.user}>
+//                     <Avatar src={avatar} size={50}></Avatar>
+//                     <div className={styles.info}>
+//                         <div className={styles.name}>{nickname}</div>
+//                         <div className={styles.date}>
+//                             <div>{String(article.update_time)}</div>
+//                             <div className={styles.views}>阅读数：{article.views}</div>
+//                         </div>
+//                         {
+//                             Number(userId) === Number(id) && 
+//                             <Link href={`/editor/${article.id}`}>编辑</Link>
+//                         }
+//                     </div>
+//                 </div>
+//                 <Markdown className={styles.markdown}>{article.content}</Markdown>
+//             </div>
+.title{
+    font-size: 30px;
+    font-weight: bold;
+
+}
+.user{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 5px;
+    .info{
+        margin-left: 10px;
+        .name{
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .date{
+            font-size: 12px;
+            color:#8a919f;
+            display: flex;
+            div{
+                margin-right: 5px;
+            }
+        }
+    }
+    .markdown{
+        img{
+            width: 100%;
+        }
+    }
+}

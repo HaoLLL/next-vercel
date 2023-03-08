@@ -29,6 +29,9 @@ export class UserAuth extends BaseEntity {
   // 多的一方 建立关系 自己的user_id 是User对象对应的表的id
   // 默认关联userId 
   // JoinColumn的user_id绑定一个user对象 ManyToOne级联查询或者存储User对象
+
+  // save: 保存的user的时候 把id记录在joinColumn规定的列上面
+  // find: 通过joinColumn规定的列 查找出user变量
   @ManyToOne(() => User, {
     cascade: true,
   })

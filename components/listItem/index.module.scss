@@ -1,0 +1,77 @@
+// <div className={styles.container}>
+//                 <div className={styles.article}>
+//                     <div className={styles.userInfo}>
+//                         <div className={styles.name}>{user?.nickname}</div>
+//                         <div className={styles.date}>{String(article?.update_time)}</div>
+//                     </div>
+//                     <h4  className={styles.title}>{article?.title}</h4>
+//                     {/* markdown转TXT 省略号 */}
+//                     <p  className={styles.content}>{article?.content}</p>
+//                     <div className={styles.statistics}>
+//                     <EyeOutlined/>
+//                     <span className={styles.views}>{article.views}</span>
+//                     </div>
+                
+//                 </div>
+//             </div>
+.container{
+    margin: 0 auto;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:10px;
+    cursor: pointer;
+    color:#000000;
+
+    .article{
+        width: 90%;
+        .userInfo{
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            span{
+                padding:0 10px;
+                border-right: 1px solid rgba(0,0,0,0.1);
+            }
+            span:first-of-type{
+                padding-left: 0;
+            }
+            span:last-of-type{
+                border-right: 0;
+            }
+            .name{
+                color:#465969;
+            }
+            .name:hover{
+                text-decoration: underline;
+                color:#1e8080;
+            }
+            .date{
+                color:#86909c;
+            }
+        }
+        .title{
+            font-size: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-bottom: 5px;
+        }
+        .content{
+            color:#86909c;
+            font-size: 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-bottom: 10px;
+        }
+        .statistics{
+            display: flex;
+            align-items: center;
+            span{
+                margin-left: 3px;
+            }
+        }
+    }
+}

@@ -26,3 +26,10 @@ a:focus {
 body {
   background-color: aliceblue;
 }
+
+.content-layout{
+  width: 1080px;
+  background-color: #fff;
+  padding: 10px 20px;
+  margin:0 auto
+}

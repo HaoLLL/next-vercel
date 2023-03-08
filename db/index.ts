@@ -1,5 +1,6 @@
 import 'reflect-metadata'
 import { DataSource } from 'typeorm'
+import { Article } from './entity/article'
 import { User } from './entity/user'
 import { UserAuth } from './entity/userAuth'
 
@@ -12,24 +13,13 @@ export const AppDataSource = new DataSource({
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_DATABASE,
-  entities: [User, UserAuth],
+  entities: [User, UserAuth,Article],
 })
-// const db = await AppDataSource.initialize() 
-// export const prepareConnection = AppDataSource.isInitialized ? 
-//             Promise.resolve(()=>{AppDataSource}): 
-//             AppDataSource.initialize;
-// export const prepareConnection =AppDataSource.isInitialized?()=>Promise.resolve(AppDataSource): AppDataSource.initialize
-// AppDataSource.initialize()
-//   .then(() => {
-//     console.log('Data Source has been initialized!')
-//   })
-//   .catch((err) => {
-//     console.error('Error during Data Source initialization', err)
-//   })
-// AppDataSource.initialize()
-//     .then(() => {
-//         console.log("Data Source has been initialized!")
-//     })
-//     .catch((err) => {
-//         console.error("Error during Data Source initialization", err)
-//     })
+
+export const initDB = async()=>{
+    const db = AppDataSource.isInitialized
+    ? AppDataSource
+    : await AppDataSource.initialize();
+    return db;
+}
+

@@ -10,6 +10,7 @@ interface IAppProps {
 }
 
 export default function App({ initialValue, Component, pageProps }: IAppProps) {
+  console.log('执行！！！！！')
   const initUserInfo = useStore((state: any) => state.initUserInfo)
   if (initialValue.user) {
     console.log('initiValue')
@@ -34,7 +35,6 @@ export default function App({ initialValue, Component, pageProps }: IAppProps) {
 //第一个请求 执行这个方法 在服务端执行 其他时候在浏览器中执行
 App.getInitialProps = async ({ ctx }: any) => {
   console.log('safasdagsdgafgadhgf')
-  console.log(ctx.req)
   if (ctx?.req == null) {
     console.log('req == null')
     return {

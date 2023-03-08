@@ -42,9 +42,65 @@
     App.getInitialProps 获取cookie中的内容 给store
 
     登录成功：存cookie 改store
+
+
+    next所有的使用获取数据的方式
+    - ssr :每次访问页面 都返回一个静态html 首页
+    getServerSideProps 连接数据库 获取数据 给组件返回props
+    没有用户交互的内容 使用ssr getServerSideProps
+    有用户交互的内容 请求后台接口
+    - ssg: 编译的时候就生成了一些静态html 用于官网 动态多的时候 不适用 结合getStaticPaths
+    - csr: 
+
+    markdown 还原 npm install markdown-to-txt -S
+    markdown 源文件渲染成markdown格式 npm install markdown-to-jsx -S
+
  *
  * @returns
  */
-export default function home() {
-  return <div>Home</div>
+
+    
+import { initDB } from "db"
+import { Article } from "db/entity/article"
+import ListItem from 'components/listItem'
+import {IArticle} from 'pages/api/index'
+import {Divider} from 'antd'
+interface IProps {
+  articles:IArticle[]
+
+}
+export default function Home(props:IProps) {
+
+  console.log(props.articles);
+  return <div>
+    {
+      props.articles.length > 0 && props.articles.map((article)=>{
+        return (
+          <div className="content-layout" key={article.id}>
+            <div>
+              <Divider></Divider>
+             <ListItem article={article}></ListItem>
+            </div>
+          </div>
+        )
+      }) 
+    }
+  </div>
+}
+
+export async function getServerSideProps(){
+  
+  const db = await initDB();
+  const articleRepo = db.getRepository(Article);
+
+  const articles = await articleRepo.find({
+    relations: ['user']
+  });
+
+  return {
+    props:{
+      articles:JSON.parse(JSON.stringify(articles))
+    }
+  }
+
 }
