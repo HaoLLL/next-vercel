@@ -5,7 +5,6 @@ import Footer from 'components/footer'
 // }
 // export default index
 export default function index({ children }: any) {
-  console.log(children)
   return (
     <div>
       <NavBar></NavBar>
