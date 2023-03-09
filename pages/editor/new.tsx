@@ -6,7 +6,7 @@ import styles from './index.module.scss'
 import { Input, Button, message } from 'antd'
 import request from 'service/fetch'
 import { useStore } from 'store'
-  import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false })
 ;(New as any).layout = null
@@ -14,7 +14,7 @@ export default function New() {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const userId = useStore((state: any) => state.user?.userInfo?.userId)
-  const { pathname, push } = useRouter()
+  const { push } = useRouter()
 
   const handleSubmit = async () => {
     if (!title) {
@@ -26,7 +26,7 @@ export default function New() {
       content,
     })
     if (response?.code === 0) {
-      message.info('发布成功');
+      message.info('发布成功')
       userId ? push(`/user/${userId}`) : push('/')
       //跳转个人中心页面
     } else {

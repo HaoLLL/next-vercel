@@ -32,10 +32,10 @@ export default function App({ initialValue, Component, pageProps }: IAppProps) {
   }
   return <>{renderLayout()}</>
 }
-//每刷新一次 就执行一次 
+//每刷新一次 就执行一次
 // 第一次请求的时候 服务端执行 以后得时候 客户端执行
 // req ===null 受到getServerSideProps的影响
-App.getInitialProps = async ({params,ctx}:any) => {
+App.getInitialProps = async ({ ctx }: any) => {
   console.log('safasdagsdgafgadhgf')
   if (ctx?.req == null) {
     console.log('req == null')
