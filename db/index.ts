@@ -1,6 +1,7 @@
 import 'reflect-metadata'
 import { DataSource } from 'typeorm'
 import { Article } from './entity/article'
+import { Comment } from './entity/comment'
 import { User } from './entity/user'
 import { UserAuth } from './entity/userAuth'
 
@@ -13,7 +14,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_DATABASE,
-  entities: [User, UserAuth,Article],
+  entities: [User, UserAuth,Article,Comment],
 })
 
 export const initDB = async()=>{

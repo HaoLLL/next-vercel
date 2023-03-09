@@ -57,11 +57,13 @@
     getServerSideProps 连接数据库 获取数据 给组件返回props
     没有用户交互的内容 使用ssr getServerSideProps
     有用户交互的内容 请求后台接口
+    渲染两次 服务端执行填充页面的script 客户端取得script 然后执行
     - ssg: 编译的时候就生成了一些静态html 用于官网 动态多的时候 不适用 结合getStaticPaths
     - csr: 
 
     markdown 还原 npm install markdown-to-txt -S
     markdown 源文件渲染成markdown格式 npm install markdown-to-jsx -S
+    
 
  *
  * @returns

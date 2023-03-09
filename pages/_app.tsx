@@ -17,6 +17,7 @@ export default function App({ initialValue, Component, pageProps }: IAppProps) {
     initUserInfo(initialValue.user)
   }
   // 第一次请求在server端显示 以后在浏览器中显示
+  // console.log('app update')
   const renderLayout = () => {
     if ((Component as any).layout === null) {
       return <Component {...pageProps} />
@@ -31,11 +32,11 @@ export default function App({ initialValue, Component, pageProps }: IAppProps) {
   }
   return <>{renderLayout()}</>
 }
-//第一个请求 执行这个方法 在服务端执行 其他时候在浏览器中执行
-// 页面包裹 withIronSessionApiRoute ctx就有req
-App.getInitialProps = async ({ ctx }: any) => {
+//每刷新一次 就执行一次 
+// 第一次请求的时候 服务端执行 以后得时候 客户端执行
+// req ===null 受到getServerSideProps的影响
+App.getInitialProps = async ({params,ctx}:any) => {
   console.log('safasdagsdgafgadhgf')
-  console.log(ctx.req)
   if (ctx?.req == null) {
     console.log('req == null')
     return {

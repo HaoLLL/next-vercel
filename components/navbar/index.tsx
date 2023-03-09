@@ -3,7 +3,7 @@ import styles from './index.module.scss'
 import Link from 'next/link'
 import { Button, Avatar, MenuProps } from 'antd'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { useStore } from 'store'
 import { Dropdown, message, Space } from 'antd'
 import Login from 'components/login'
@@ -26,12 +26,22 @@ export default function NavBar() {
   }
   console.log('navbar 执行')
 
-  useStore.subscribe((state: any) => {
-    console.log('susbscibe')
-    console.log(state)
-    setAvatar(state.user?.userInfo?.avatar)
-    setUserId(state.user?.userInfo?.userId)
-  })
+  
+  // 【】执行一次 
+  useEffect(()=>{
+    const unsubscribe = useStore.subscribe((state: any) => {
+      console.log('susbscibe')
+      console.log(state)
+      setTimeout(()=>{
+        setAvatar(state.user?.userInfo?.avatar)
+        setUserId(state.user?.userInfo?.userId)
+      },0);
+    });
+    return ()=>{
+      console.log('销毁')
+      unsubscribe();
+    }
+  },[]);
 
   //个人主页 退出登录
   const items = [
