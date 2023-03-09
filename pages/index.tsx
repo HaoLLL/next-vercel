@@ -1,4 +1,12 @@
 /**
+ * 
+ * 服务端渲染：服务端取得数据 直接返回html
+ * 查看网站源代码 看是不是有相关的数据
+ * 客户端渲染： 饿了吗 js动态描画页面
+ * 
+ * 
+ * 
+ * 
  * eslint(代码校验 语法错误)+stylelint(ccs样式格式化)+prettier(代码格式化)
  * npm install eslint stylelint stylelint-config-standard-scss
  * preference->setting->code actions on save settings.json中 "source.fixAll.stylelint": true
@@ -59,48 +67,43 @@
  * @returns
  */
 
-    
-import { initDB } from "db"
-import { Article } from "db/entity/article"
+import { initDB } from 'db'
+import { Article } from 'db/entity/article'
 import ListItem from 'components/listItem'
-import {IArticle} from 'pages/api/index'
-import {Divider} from 'antd'
+import { IArticle } from 'pages/api/index'
+import { Divider } from 'antd'
 interface IProps {
-  articles:IArticle[]
-
+  articles: IArticle[]
 }
-export default function Home(props:IProps) {
-
-  console.log(props.articles);
-  return <div>
-    {
-      props.articles.length > 0 && props.articles.map((article)=>{
-        return (
-          <div className="content-layout" key={article.id}>
-            <div>
-              <Divider></Divider>
-             <ListItem article={article}></ListItem>
+export default function Home(props: IProps) {
+  return (
+    <div>
+      {props.articles.length > 0 &&
+        props.articles.map((article) => {
+          return (
+            <div className="content-layout" key={article.id}>
+              <div>
+                <Divider></Divider>
+                <ListItem article={article}></ListItem>
+              </div>
             </div>
-          </div>
-        )
-      }) 
-    }
-  </div>
+          )
+        })}
+    </div>
+  )
 }
 
-export async function getServerSideProps(){
-  
-  const db = await initDB();
-  const articleRepo = db.getRepository(Article);
+export async function getServerSideProps() {
+  const db = await initDB()
+  const articleRepo = db.getRepository(Article)
 
   const articles = await articleRepo.find({
-    relations: ['user']
-  });
+    relations: ['user'],
+  })
 
   return {
-    props:{
-      articles:JSON.parse(JSON.stringify(articles))
-    }
+    props: {
+      articles: JSON.parse(JSON.stringify(articles)),
+    },
   }
-
 }

@@ -24,6 +24,7 @@ export default function NavBar() {
   const handleClose = () => {
     setShowLogin(false)
   }
+  console.log('navbar 执行')
 
   useStore.subscribe((state: any) => {
     console.log('susbscibe')
@@ -31,7 +32,6 @@ export default function NavBar() {
     setAvatar(state.user?.userInfo?.avatar)
     setUserId(state.user?.userInfo?.userId)
   })
-  console.log('update')
 
   //个人主页 退出登录
   const items = [
