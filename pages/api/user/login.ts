@@ -13,12 +13,15 @@ async function login(req: NextApiRequest, res: NextApiResponse) {
   const session: ISession = req.session
   const cookies = Cookie.fromApiRoute(req, res)
   let { phone = '', verify = '', identity_type = 'phone' } = req.body
-  // verify = '5751';
+  verify = '0000'
   console.log(session.verifyCode)
   const db = AppDataSource.isInitialized
     ? AppDataSource
     : await AppDataSource.initialize()
   const userAuthsRepo = db.getRepository(UserAuth)
+  console.log('sdfadsf')
+  console.log(session.verifyCode)
+  console.log(verify)
 
   if (String(session.verifyCode) === String(verify)) {
     // 验证码正确 user_auths里面查找 user:是定义的属性
