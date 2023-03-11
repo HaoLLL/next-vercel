@@ -3,11 +3,14 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm'
 import { Comment } from './comment'
+import { Tag } from './tag'
 import { User } from './user'
 
 @Entity('articles')
@@ -42,4 +45,20 @@ export class Article extends BaseEntity {
 
   @OneToMany(() => Comment, (comment) => comment.article)
   comments!: Comment[]
+
+  // 保存的时候 需要映射
+  @ManyToMany(() => Tag, (tag) => tag.articles, {
+    cascade: true,
+  })
+  // 级联查找的时候
+  @JoinTable({
+    name: 'tags_articles_rel',
+    joinColumn: {
+      name: 'article_id',
+    },
+    inverseJoinColumn: {
+      name: 'tag_id',
+    },
+  })
+  tags!: Tag[]
 }

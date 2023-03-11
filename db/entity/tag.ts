@@ -41,9 +41,12 @@ export class Tag extends BaseEntity {
   users!: User[]
 
   //和article 多对多  建立关联表
-  @ManyToMany(() => Article, {
-    cascade: true,
-  })
+  @ManyToMany(
+    () => Article,
+    (article) => {
+      article.tags
+    },
+  )
   @JoinTable({
     name: 'tags_articles_rel',
     joinColumn: {

@@ -44,42 +44,42 @@ export default function About() {
 //     }
 // }
 // 有关Promise
-function test() {
-  Promise.resolve(42) //Promise的初始化
-  new Promise((resolve, reject) => {
-    resolve(42)
-  })
-  Promise.reject(new Error('出错了'))
-  const errPromise = new Promise((resolve, reject) => {
-    reject(new Error('出错了'))
-  })
+// function test() {
+//   Promise.resolve(42) //Promise的初始化
+//   new Promise((resolve, reject) => {
+//     resolve(42)
+//   })
+//   Promise.reject(new Error('出错了'))
+//   const errPromise = new Promise((resolve, reject) => {
+//     reject(new Error('出错了'))
+//   })
 
-  /** 执行顺序 Promise中的立即执行 */
-  const promise = new Promise(function (resolve) {
-    console.log('inner promise') // 1
-    resolve(42)
-  })
-  promise.then(function (value) {
-    console.log(value) // 3
-  })
-  console.log('outer promise') // 2
+//   /** 执行顺序 Promise中的立即执行 */
+//   const promise = new Promise(function (resolve) {
+//     console.log('inner promise') // 1
+//     resolve(42)
+//   })
+//   promise.then(function (value) {
+//     console.log(value) // 3
+//   })
+//   console.log('outer promise') // 2
 
-  /** return 可以是Promise */
-}
+//   /** return 可以是Promise */
+// }
 
 /** rejct的不能处理 */
-function throwError(value: number) {
-  // 抛出异常
-  throw new Error(value + '')
-}
+// function throwError(value: number) {
+//   // 抛出异常
+//   throw new Error(value + '')
+// }
 // <1> onRejected不会被调用
-function badMain(onRejected: any) {
-  return Promise.resolve(42).then(throwError, onRejected)
-}
+// function badMain(onRejected: any) {
+//   return Promise.resolve(42).then(throwError, onRejected)
+// }
 // <2> 有异常发生时onRejected会被调用
-function goodMain(onRejected: any) {
-  return Promise.resolve(42).then(throwError).catch(onRejected)
-}
+// function goodMain(onRejected: any) {
+//   return Promise.resolve(42).then(throwError).catch(onRejected)
+// }
 // 运行示例
 // badMain(function(){
 //     console.log("BAD");

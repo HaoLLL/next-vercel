@@ -34,7 +34,7 @@ export default function App({ initialValue, Component, pageProps }: IAppProps) {
 }
 //每刷新一次 就执行一次
 // 第一次请求的时候 服务端执行 以后得时候 客户端执行
-// req ===null 受到getServerSideProps的影响
+// req ===null 受到getServerSideProps的影响 打包就会执行！！！
 App.getInitialProps = async ({ ctx }: any) => {
   console.log('safasdagsdgafgadhgf')
   if (ctx?.req == null) {
